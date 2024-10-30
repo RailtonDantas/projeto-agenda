@@ -54,6 +54,6 @@ app.use(checkError);
 app.use(giveCsrfToken)
 app.use(routes)
 app.on('A CONEXÃO OCORREU', () => {
-    app.listen(5050)
-    console.log('http://localhost:5050')
+    app.listen(3000)
+    console.log('http://localhost:3000')
 })
