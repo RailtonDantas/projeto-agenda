@@ -1,0 +1,7 @@
+<% if(userNotExist.length > 0){ %>
+    <div id="userNotExist" class="bg-red-500 text-black border border-black px-2 py-2 mb-4">
+        <% userNotExist.forEach(error => {%>
+            <%= error%>%><br>
+        <% }) %>   
+       </div>
+<% }%>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/output.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="assets/js/front.js" defer></script>
+
+</head>
+<body class='bg-slate-950 h-screen w-screen flex flex-col content-center'>
+    <header  class="bg-slate-900 w-screen h-12 p-2 flex flex-row justify-between border-2 border-slate-800">
+        <span id="addLink" class="text-red-600 tracking-widest flex flex-row items-center gap-3">
+            <span id="settings" class="material-symbols-outlined cursor-pointer text-white self-center">
+            settings
+            </span>
+        </span>
+        <span>
+           <a href="/registrarContato" class="ml-10 font-sans text-x text-white font-bold">Cadastrar contatos</a>
+           <a href="/logout" class="ml-10 font-sans text-x text-white font-bold">Sair</a>
+        </span>
+    </header>
+    <h1 class="text-4xl font-sans font-bold w-screen decoration-slate-900 text-center w-fit text-white mt-10 border-y border-cyan-800 px-8 py-4 self-center leading-8">Agenda</h1>
+    <h2 class="text-2xl font-sans font-bold decoration-slate-900 text-center w-fit text-white px-8 py-4 self-center leading-8">Abaixo estão todos os seus contatos!</h2>
+    <%-include('includes/wrongPassword')%>
+    <!-- <div class='error'>Este é um erro qualquer</div> -->
+    <dialog open="false" class="absolute z-10 w-1/4 h-2/3 bg-gray-400 border border-black rounded hidden top-11 flex flex-col items-center justify-around blur-none" >
+        <h1 class="text-4xl font-sans font-bold w-full text-center w-fit text-sky-700 mt-10 border-y border-cyan-800 px-8 py-4 self-center leading-8">Delete sua conta!</h1>
+        <form action="/delete/deleteAccount" method="POST" class="flex flex-col w-9/12 h-fit items-center gap-2 ">
+            <input type="hidden" name="_csrf"  value="<%= csrfToken%>">
+                <label for="input-enter-email">Email:
+                    <input type="email" name="userEmail" id="input-enter-email" value="<%=user.userEmail%>" class="bg-white outline-0 border border-gray-900" readonly>
+                </label>
+                <label for="input-enter-password">Senha:
+                    <input type="password" name="userPassword" id="input-enter-password" class="bg-white outline-0 border border-gray-900">
+                </label>
+                <button class="px-4 py-2 bg-sky-700 border-2 border-black">Deletar</button>
+            </form>
+    </dialog>
+    <main class="flex flex-col w-screen h-fit items-center justify-center gap-2">
+     <%if(contacts.length > 0){%>
+    <% contacts.forEach(currentContact => {%>
+        <div class="flex flex-row w-10/12 h-12 justify-between items-center gap-2">
+                <div class="flex flex-row w-9/12 h-full justify-between items-center bg-white px-2 py-2 border-2 border-sky-700 rounded-lg">
+                    <div class="grow h-full text-center"><%= currentContact.name %> </div>
+                    <div class="grow h-full text-center"><%= currentContact.surname %> </div>
+                    <div class="grow h-full text-center"><%= currentContact.email %></div>
+                    <div class="grow h-full text-center"><%= currentContact.phoneNumber%> </div>
+                </div>
+                <div class="flex flex-row w-3/12 h-full justify-evenly gap-2">
+                    <div class="bg-sky-700 grow flex flex-row items-center justify-center border border-cyan-50 rounded hover:bg-sky-500 duration-200"">
+                        <a href="/edit/<%=currentContact._id%>" class="text-lg">Editar</a>
+                    </div>
+                    <div class="bg-red-700 grow flex flex-row items-center justify-center border border-cyan-50 rounded hover:bg-red-600 duration-200"">
+                        <a href="/delete/<%=currentContact._id%>" class="text-lg text-black">Excluir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% })%>
+    <%}%>
+    </main>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/output.css">
+</head>
+<body class='bg-slate-950 h-screen w-screen flex flex-col content-center'>
+    <header class="bg-slate-900 w-screen h-12 p-2 flex flex-row justify-between border-2 border-slate-800">
+        <p class="mr-10 font-sans text-x text-white font-bold tracking-widest">Agenda</p>
+        <a href="/login" class="ml-10 font-sans text-x text-white font-bold">Entrar</a>
+    </header>
+    <h1 class="text-4xl font-sans font-bold w-screen decoration-slate-900 text-center w-fit text-white mt-10 border-y border-cyan-800 px-8 py-4 self-center leading-8">Agenda</h1>
+    <h2 class="text-2xl font-sans font-bold decoration-slate-900 text-center w-fit text-white px-8 py-4 self-center leading-8">Essa é a forma de salvar seus contatos!</h2>
+    <!-- <div class='error'>Este é um erro qualquer</div> -->
+    <main class="flex flex-col w-screen h-fit items-center justify-center">
+        <div class="flex flex-row w-10/12 h-12 justify-between items-center gap-2">
+            <div class="flex flex-row w-9/12 h-full justify-between items-center bg-white px-2 py-2 border-2 border-sky-700 rounded-lg">
+                <div class="grow h-full text-center">Nome</div>
+                <div class="grow h-full text-center">Sobrenome</div>
+                <div class="grow h-full text-center">Email@email.com</div>
+                <div class="grow h-full text-center">Número de telefone</div>
+            </div>
+            <div class="flex flex-row w-3/12 h-full justify-evenly gap-2">
+                <div class="bg-sky-700 grow flex flex-row items-center justify-center border border-cyan-50 rounded hover:bg-sky-500 duration-200"><a href="#" class="text-lg">Editar</a></div>
+                <div class="bg-red-700 grow flex flex-row items-center justify-center border border-cyan-50 rounded hover:bg-red-600 duration-200"><a href="#" class="text-lg text-black">Deletar</a></div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

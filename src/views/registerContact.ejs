@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="/assets/css/output.css">
+</head>
+<body class='bg-slate-950 h-screen w-screen flex flex-col content-center items-center gap-16'>
+    <header class="bg-slate-900 w-screen h-12 p-2 flex flex-row justify-between border-2 border-slate-800">
+        <span>
+           <a href="/logout" id="logout" class="ml-10 font-sans text-x text-white font-bold">Sair</a>
+        </span>
+    </header>
+        <%const length = Object.keys(currentContact).length > 0 %>
+        <%if(length){%>
+        <form action="/edit/<%=currentContact._id%>" method="POST"  class="flex flex-col w-3/5 h-fit bg-white items-center gap-2 pb-4 rounded">
+            <h1 class="text-4xl font-sans font-bold w-full text-center text-black mt-10 border-y border-cyan-800 px-8 py-4 self-center leading-8">Editar Contato</h1>
+            <%- include('includes/invalidContact') %>
+            <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+            <div class="flex flex-row w-11/12 border border-sky-700 h-full py-2 px-2 gap-2 ">
+                <div class="flex flex-col h-fit gap-2 w-1/5">
+                    <label for="register-name">Nome:</label>
+                    <label for="register-surname">Sobrenome:</label>
+                    <label for="register-email">Email:</label>
+                    <label for="register-phone-number">Número:</label>
+                </div>
+                <div class="flex flex-col h-fit w-4/5 gap-2">
+                    <input type="text" value='<%=currentContact.name%>' name="updateName" id="register-name" class="bg-white outline-0 border border-gray-900 p-px">
+                    <input type="text" value='<%=currentContact.surname%>' name="updateSurname" id="register-surname" class="bg-white outline-0 border border-gray-900 p-px">
+                    <input type="text" value='<%=currentContact.email%>' name="updateEmail" id="register-email" class="bg-white outline-0 border border-gray-900 p-px">
+                    <input type="text" value='<%=currentContact.phoneNumber%>' name="updatePhoneNumber" id="register-phone-number" class="bg-white outline-0 border border-gray-900 p-px">
+                </div>
+            </div>
+            <button class="px-4 py-2 bg-sky-700 border-2 border-black">Editar Contato</button>
+        </form>
+        <%}%>
+        <%if(!length){%>
+         <form action="/contatoRegistrado" method="POST" class="flex flex-col w-3/5 h-fit bg-white items-center gap-2 pb-4 rounded">
+            <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+            <h1 class="text-4xl font-sans font-bold w-full text-center text-black mt-10 border-y border-cyan-800 px-8 py-4 self-center leading-8">Cadastrar Contato</h1>
+            <%- include('includes/invalidContact') %>
+            <div class="flex flex-row w-11/12 border border-sky-700 h-full py-2 px-2 gap-2 ">
+                <div class="flex flex-col h-fit gap-2 w-1/5">
+                    <label for="register-name">Nome:</label>
+                    <label for="register-surname">Sobrenome:</label>
+                    <label for="register-email">Email:</label>
+                    <label for="register-phone-number">Número:</label>
+                </div>
+                <div class="flex flex-col h-fit w-4/5 gap-2">
+                    <input type="text"  name="registerName" id="register-name"  class="bg-white outline-0 border border-gray-900 p-px">
+                    <input type="text" name="registerSurname" id="register-surname" class="bg-white outline-0 border border-gray-900 px-px">
+                    <input type="text" name="registerEmail" id="register-email" class="bg-white outline-0 border border-gray-900 p-px">
+                    <input type="text"  name="registerPhoneNumber" id="register-phone-number" class="bg-white outline-0 border border-gray-900 p-px">
+                </div>
+            </div>
+            <button class="px-4 py-2 bg-sky-700 border-2 border-black">Registrar Contato</button>
+        </form>
+        <%}%>
+</body>
+</html>

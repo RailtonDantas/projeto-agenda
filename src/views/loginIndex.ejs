@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet"  href="./assets/css/routeLogin.css"> -->
+    <link rel="stylesheet" href="assets/css/output.css">
+</head>
+<body class='bg-slate-950 h-screen w-screen flex flex-col content-center'>
+    <main>
+        <h1 class="text-4xl font-sans font-bold w-screen decoration-slate-900 text-center w-fit text-white mt-10 border-y border-cyan-800 px-8 py-4 self-center leading-8">Criar conta / Entrar na sua conta</h1>
+        <div class="flex flex-row w-screen h-5/6 items-center justify-evenly">
+            <section class="flex flex-col w-2/5 bg-white h-fit items-center justify-center border-2 border-sky-700 py-4">
+                 <h2 class="text-2xl font-sans text-center w-fit text-black px-8 py-4 self-center leading-8">Criar sua conta</h2>
+                 <p class="text-base font-sans text-center w-fit text-black px-8 py-4 self-center leading-8">Caso ainda não tenha uma conta cadastrada, crie aqui.</p>
+                 <%- include('includes/messages-error') %>
+                 <%- include("includes/messages-userExist")%>
+                 <form action="/registerUser" method='POST' class="flex flex-col w-9/12 h-fit items-center gap-2 ">
+                 <input type="hidden" name="_csrf"  value="<%= csrfToken%>">
+                     <label for="input-create-email">Email:
+                        <input type="email" name="userEmail" id="input-create-email" class="bg-white outline-0 border border-gray-900">
+                     </label>
+                     <label for="input-create-password">Senha:
+                        <input type="password" name="userPassword" id="input-create-password" class="bg-white border border-gray-900  outline-0"></label>
+                     <button class="px-4 py-2 bg-sky-700 border-2 border-black">Criar conta</button>
+                 </form>
+                </section>
+                <section id="enter-account" class="flex flex-col w-2/5 bg-white h-fit items-center justify-center border-2 border-sky-700 py-4">
+                    <h2 class="text-2xl font-sans text-center w-fit text-black px-8 py-4 self-center leading-8">Login</h2>
+                    <p class="text-base font-sans text-center w-fit text-black px-8 py-4 self-center leading-8">Caso já possua sua conta, entre nela.</p>
+                    <%- include("includes/userNotExist-messages")%>
+                    <form action="/enter" method="POST" class="flex flex-col w-9/12 h-fit items-center gap-2 ">
+                    <input type="hidden" name="_csrf"  value="<%= csrfToken%>">
+                        <label for="input-enter-email">Email:
+                            <input type="email" name="userEmail" id="input-enter-email" class="bg-white outline-0 border border-gray-900">
+                        </label>
+                        <label for="input-enter-password">Senha:
+                            <input type="password" name="userPassword" id="input-enter-password" class="bg-white outline-0 border border-gray-900">
+                        </label>
+                        <button class="px-4 py-2 bg-sky-700 border-2 border-black">Entrar</button>
+                    </form>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
