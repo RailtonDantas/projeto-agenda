@@ -7,7 +7,7 @@ const { routes } = require("./routes");
 const session = require('express-session');
 const csrf = require('csurf');
 const { checkError , giveCsrfToken} = require('./src/middlewares/middlewaresForCsrf');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const MongoStore = require("connect-mongo");
 const mongoose = require('mongoose');
 // const errors = require("./src/middlewares/middlewaresForCsrf").errors;
@@ -46,7 +46,7 @@ app.use(saveInLocals)
 // app.use(user)
 // app.use(sucess)
 app.use(csrf())
-app.use(helmet())
+// app.use(helmet())
 app.use(express.static(path.resolve(__dirname,'public')))
 app.set('views',path.resolve(__dirname,'src','views'));
 app.set('view engine','ejs')
